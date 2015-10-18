@@ -1,3 +1,7 @@
+[![Build
+Status](https://travis-ci.org/lksv/wepa_extractor.svg?branch=master)](https://travis-ci.org/lksv/wepa_extractor)
+
+
 # WepaExtractor
 
 *Web Page Extractor - currently in heavily development - do not use this
