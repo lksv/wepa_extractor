@@ -112,6 +112,25 @@ describe WepaExtractor::Schema::Item do
         it 'forwards key_matcher result as result' do
           expect(subject.extract_value('input')).to eq value_result
         end
+
+        context 'when inner_schema is present' do
+          let(:value_result) { 'String result' }
+          it 'calls inner_schema' do
+            nested_schmea = double('nested schema')
+
+            item = WepaExtractor::Schema::Item.new(
+              key,
+              value,
+              inner_schema: nested_schmea
+            )
+
+            expect(nested_schmea).to(
+              receive(:call).with(value_result).and_return 'Yeh!'
+            )
+
+            expect(item.extract_value('input')).to eq 'Yeh!'
+          end
+        end
       end
 
       context 'key_matcher returns one item (in Array)' do
